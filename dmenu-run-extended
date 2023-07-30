@@ -1,0 +1,27 @@
+#! /bin/python3
+import subprocess
+from os import listdir, getenv 
+from os.path import isdir, join
+
+path = getenv("PATH")
+if not path: exit(1)
+path = path.split(':')
+programs = {p:listdir(p) for p in path if isdir(p)}
+
+desktop_paths = ("/var/lib/flatpak/exports/share/applications/", "/usr/share/applications/", "/home/eppi/.local/share/applications/");
+desktop_programs = {path:listdir(path) for path in desktop_paths}
+
+all_programs = [i for sublist in [*desktop_programs.values(), *programs.values()] for i in sublist]
+programs_str = '\n'.join(all_programs).encode('utf-8')
+r = subprocess.run(['dmenu'], input=programs_str, stdout=subprocess.PIPE)
+target = r.stdout.strip().decode('utf-8')
+
+for path, program in desktop_programs.items():
+    if target in program:
+        subprocess.run(['gio', 'launch', join(path, target)])
+        exit(0)
+
+for path, program in programs.items():
+    if target in program:
+        subprocess.run([join(path, target)])
+        exit(0)
