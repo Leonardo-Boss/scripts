@@ -1,0 +1,4 @@
+#! /bin/bash
+
+sed -i -- "s/- ~\/.config\/alacritty\/themes\/themes\/gruvbox_light.yaml/ - ~\/.config\/alacritty\/themes\/themes\/gruvbox.yaml/"\
+    ~/.config/alacritty/alacritty.yml
