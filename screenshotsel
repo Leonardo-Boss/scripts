@@ -1,0 +1,2 @@
+#!/bin/sh
+mkdir -p /home/eppi/Pictures/Screenshots/ && scrot /home/eppi/Pictures/Screenshots/%m-%d-%Y-%H%M%S.png --select --line mode=edge -e 'xclip -selection clipboard -t image/png -i $f'
