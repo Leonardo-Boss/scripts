@@ -1,0 +1,11 @@
+#!/bin/bash
+
+active=$(systemctl --user is-active xscreensaver)
+if [ $active == "inactive" ]; then
+    systemctl --user start xscreensaver
+    kill -40 $(pidof dwmblocks)
+fi
+
+xscreensaver-command --activate
+
+
