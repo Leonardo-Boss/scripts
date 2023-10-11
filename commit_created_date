@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while IFS= read -s file; do
+	git add $file
+	git commit -m "add $file" --date $(date +%F -r "/home/eppi/.local/bin/$file")
+done
+echo done
