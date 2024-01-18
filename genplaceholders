@@ -1,0 +1,29 @@
+#!/bin/python3
+import subprocess
+PLACEHOLDER_WIDTH = 172
+MOLDURE=5
+PLACEHOLDER_MOBILE_WIDTH = 360
+MOLDURE_M=10
+
+for i in range(1,25):
+    if i%2:
+        fcolor = '#eec666'
+        bcolor = '#a76f24'
+        font = "Jingle-Balle"
+        gravity = 'north'
+    else:
+        fcolor = '#ee3532'
+        bcolor = '#731013'
+        font = "Candy-Cane-(Unregistered)"
+        gravity = 'center'
+    command = f'convert -gravity {gravity} -size {PLACEHOLDER_WIDTH}x{PLACEHOLDER_WIDTH}  -font "{font}" -background "{bcolor}" -fill "{fcolor}" caption:"{i}" "placeholderm_{i}.png"'
+    subprocess.call(command, shell=True)
+    command = f'moldure "placeholderm_{i}.png" "{fcolor}" "placeholder_{i}.png" "{MOLDURE}"'
+    subprocess.call(command, shell=True)
+    subprocess.call('rm placeholderm*', shell=True)
+
+    command = f'convert -gravity {gravity} -size {PLACEHOLDER_MOBILE_WIDTH}x{PLACEHOLDER_MOBILE_WIDTH}  -font "{font}" -background "{bcolor}" -fill "{fcolor}" caption:"{i}" "placeholderm_{i}.png"'
+    subprocess.call(command, shell=True)
+    command = f'moldure "placeholderm_{i}.png" "{fcolor}" "placeholder_mobile_{i}.png" "{MOLDURE_M}"'
+    subprocess.call(command, shell=True)
+    subprocess.call('rm placeholderm*', shell=True)

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+alacritty -e nvim $HOME/.config/favorites.txt

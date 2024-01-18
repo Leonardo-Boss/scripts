@@ -1,0 +1,9 @@
+#!/bin/sh
+
+convert $1 -resize x360 mobile$1
+moldure mobile$1 10
+echo mobile$1 >> ~/Pictures/memes/inputm.in
+
+mogrify -resize x172 $1
+moldure $1 5
+echo $1 >> ~/Pictures/memes/input.in

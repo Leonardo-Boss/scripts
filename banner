@@ -1,0 +1,53 @@
+#!/bin/python3
+import subprocess
+import sys
+
+SPACER = 25
+BANNER_WIDTH_O = 1920
+BANNER_WIDTH = 1920
+BANNER_HEIGHT = 182
+PLACEHOLDER_WIDTH = 182
+
+BANNER_WIDTH_M = 1600
+PLACEHOLDER_MOBILE_WIDTH = 380
+BANNER_HEIGHT_M = 380
+
+
+if len(sys.argv) != 3:
+    print('need input file')
+    exit()
+images = open(sys.argv[1]).readlines()
+imagesm = open(sys.argv[2]).readlines()
+
+def gen_ban(base, spacer, banner_width, banner_height, placeholder_width, images, placeholder_name, out):
+    images = [[i[:-1], *map(int, subprocess.check_output(f'identify -ping -format "%w %h" {i}', shell=True).split())] for i in images]
+    print(images)
+    n_images = len(images)
+    banner_imgs=[]
+    total_width=spacer
+    for image, width, height in images[::-1]:
+        if total_width + width + spacer > banner_width - (placeholder_width + spacer):
+            break
+        total_width += width + spacer
+        banner_imgs.append([image, width, height])
+    banner_imgs.reverse()
+
+    if (rest:=banner_width - total_width) > placeholder_width:
+        n = rest//(placeholder_width+spacer)
+        spacer += (rest%(placeholder_width+spacer))//(n+len(banner_imgs)+1)
+
+        banner_imgs += [[f'{placeholder_name}_{i}.png', placeholder_width, placeholder_width] for i in range(n_images+1, n+n_images+1)]
+
+    spacer_str = f' xc:none '
+    command_string = f'convert -gravity center +append -size {spacer}x{banner_height} '+spacer_str+spacer_str.join(tuple(map(lambda x:x[0], banner_imgs)))+spacer_str+' banner_memes.png'
+    subprocess.call(command_string, shell=True)
+
+    command = f'convert -gravity center {base} banner_memes.png -composite "/home/eppi/Pictures/memes/advent2023/{out}"'
+    subprocess.call(command, shell=True)
+
+    overflow_banner = images[:n_images-len(banner_imgs)]
+
+
+gen_ban('newbanner.png', SPACER, BANNER_WIDTH, BANNER_HEIGHT, PLACEHOLDER_WIDTH, images, 'placeholder',  'new.png')
+gen_ban('oldbanner.png', SPACER, BANNER_WIDTH_O, BANNER_HEIGHT, PLACEHOLDER_WIDTH, images, 'placeholder',  'old.jpg')
+gen_ban('mobilebanner.png', SPACER, BANNER_WIDTH_M, BANNER_HEIGHT_M, PLACEHOLDER_MOBILE_WIDTH, imagesm, 'placeholder_mobile',  'mobile.png')

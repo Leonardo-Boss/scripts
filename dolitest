@@ -1,0 +1,4 @@
+#!/bin/sh
+
+. /var/www/html/dolibarr/htdocs/custom/riopretomodule/python_test
+

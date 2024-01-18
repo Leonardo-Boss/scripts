@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xdg-open $(cat $HOME/.config/favorites.txt | dmenu)

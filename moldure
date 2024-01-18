@@ -1,0 +1,16 @@
+#!/bin/sh
+owidth=$(identify -ping -format "%w" "$1")
+oheight=$(identify -ping -format "%h" "$1")
+# mold=$(($oheight*1/10))
+mold=$2
+width=$(($owidth + $mold*2))
+height=$(($oheight + $mold*2))
+
+convert -gravity center \( -size $width\x$height -raise $mold\x$mold canvas:tan4 \) -size $owidth\x$oheight canvas:ivory1 -composite "$1" -composite $1
+
+# magick \( \( -size $width\x$height xc:tan4 -raise $mold\x$mold \) -size $owidth\x$oheight xc:white -gravity center -composite \) NULL: \( "$1" -coalesce \) -layers composite moldure.gif
+
+
+# convert -gravity center \( \( -size $width\x$height -raise $mold\x$mold xc:tan4 \) -size $owidth\x$oheight xc:white -composite \) NULL: \( "$1" -coalesce \) -layers composite -deconstruct moldure.gif
+
+# convert -gravity center \( \( -size $width\x$height -raise $mold\x$mold xc:tan4 \) -size $owidth\x$oheight xc:white -composite \) \( "$1" -coalesce \) -delete 0 moldure.gif
