@@ -1,0 +1,22 @@
+#!/bin/sh
+
+path=$(echo $(pwd)/$1)
+cuts=($(cat "${path}"))
+video_path=$(echo $path | cut -d "." -f 1,2)
+command="ffmpeg -i \"$video_path\" -filter_complex \"subtitles='$video_path':si=0; "
+footer=""
+
+count=0
+
+for variable in  $cuts
+do
+	start=$(echo $variable | cut -d ":" -f 2)
+	end=$(echo $variable | cut -d ":" -f 3)
+	command="${command} [0:v]trim=start=$start:end=$end,setpts=PTS-STARTPTS[${count}v];"
+	command="${command} [0:a]atrim=start=$start:end=$end,asetpts=PTS-STARTPTS[${count}a];"
+	footer="${footer}[${count}v]"
+	footer="${footer}[${count}a]"
+	count=$((count+1))
+done
+command="${command} ${footer}concat=n=${count}:v=1:a=1[outv][outa]\" -map [outv] -map [outa] out.mp4" 
+echo $command
