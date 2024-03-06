@@ -8,7 +8,11 @@ if not path: exit(1)
 path = path.split(':')
 programs = {p:listdir(p) for p in path if isdir(p)}
 
-desktop_paths = ("/var/lib/flatpak/exports/share/applications/", "/usr/share/applications/", "/home/eppi/.local/share/applications/");
+desktop_paths = (
+        "/var/lib/flatpak/exports/share/applications/",
+        "/usr/share/applications/",
+        # "/home/eppi/.local/share/applications/"
+        );
 desktop_programs = {path:listdir(path) for path in desktop_paths}
 
 all_programs = [i for sublist in [*desktop_programs.values(), *programs.values()] for i in sublist]

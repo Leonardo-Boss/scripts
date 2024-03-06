@@ -1,0 +1,15 @@
+#!/bin/python3
+import sys
+
+needle = sys.argv[1]
+lines = open(0).read().splitlines()
+
+found = False
+res = []
+for i in lines:
+    if i == needle:
+        found = True
+    if found:
+        res.append(i)
+res = '\n'.join(res)
+print(res)

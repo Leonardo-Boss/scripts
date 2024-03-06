@@ -1,5 +1,5 @@
 #! /bin/bash
 
-sed -i -- "s/\/home\/eppi\/.config\/alacritty\/themes\/themes\/gruvbox_light.toml/\/home\/eppi\/.config\/alacritty\/themes\/themes\/gruvbox.toml/" \
+sed -i -- "s/\/home\/eppi\/.config\/alacritty\/themes\/themes\/rose-pine-dawn.toml/\/home\/eppi\/.config\/alacritty\/themes\/themes\/rose-pine.toml/" \
     ~/.config/alacritty/alacritty.toml
 

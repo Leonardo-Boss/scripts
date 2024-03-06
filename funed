@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ "$#" -ne 1 ]; then
-	alacritty -e nvim $(find -L $HOME/scripts/ -type f | dmenu)
+	alacritty -e nvim $(find -L $HOME/Scripts/ -type f | dmenu)
 else
-	nvim "$HOME/scripts/$1"
+	nvim "$HOME/Scripts/$1"
 fi

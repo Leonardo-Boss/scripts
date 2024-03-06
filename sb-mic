@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+    1) mictoggle &;;
+    6) "alacritty" -e "nvim" "$0" &;;
+esac
+
+micstate=$(pactl get-source-mute @DEFAULT_SOURCE@)
+if [ "$micstate" == "Mute: no" ]; then
+	echo "🎙️"
+else
+	echo "🤫"
+fi

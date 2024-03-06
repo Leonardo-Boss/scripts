@@ -1,0 +1,15 @@
+#!/bin/sh
+animefolder="/home/eppi/mnt/harddrive/anime"
+choosenanime=$(ls "$animefolder" | fzf)
+escapedpath=$(echo "$animefolder/$choosenanime/" | sed -e 's/[]\/$*.^[]/\\&/g')
+
+choosenep=$(find "$animefolder/$choosenanime" -type f | sed "s/$escapedpath//" | fzf)
+find "$animefolder/$choosenanime" -type f | sort | get-after  "$animefolder/$choosenanime/$choosenep" | mpv --playlist=-
+#while [ -n "$choosenep" ]; do
+#	mpv "$chooseneps"
+#
+#	choosenanime=$(ls "$animefolder" | fzf)
+#	escapedpath=$(echo "$animefolder/$choosenanime/" | sed -e 's/[]\/$*.^[]/\\&/g')
+#	choosenep=$(find "$animefolder/$choosenanime" -type f | sed "s/$escapedpath//" | fzf)
+#	chooseneps=$(find "$animefolder/$choosenanime" -type f | sort | get-after  "$animefolder/$choosenanime/$choosenep")
+#done

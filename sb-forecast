@@ -1,10 +1,14 @@
 #!/bin/sh
 
 weatherreport="${XDG_CACHE_HOME:-$HOME/.cache}/weatherreport"
-last_mod=$(date +'%s' -r $weatherreport)
+if [ -s "$weatherreport" ]; then
+	last_mod=$(date +'%s' -r $weatherreport)
+else
+	last_mod=0
+fi
 now=$(date +'%s')
 
-if [ $(($now - $last_mod)) -ge 600 ] || [ ! -s $weatherreport ]; then
+if [ $(($now - $last_mod)) -ge 600 ]; then
     curl "https://api.openweathermap.org/data/2.5/weather?lat=-22.5615068&lon=-47.401766&units=metric&appid=c6ab7fea93b9e1d0f062c0b29b49e143" > $weatherreport
 fi
 
