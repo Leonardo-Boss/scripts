@@ -1,0 +1,14 @@
+#!/bin/sh
+# Script to start editing a new file in vim using a template form the users Template direcotry as basis
+# requires nvim and fzf
+if [ $# -ne 1 ]; then
+	>&2 echo "use one argument 'file-name'"
+fi
+
+# xdg_dirs environment variables are borked in my system for some reason and I'm too lazy to solve it so I hardcoded it
+templatedir=$HOME/Templates/
+template=$(ls $templatedir | fzf)
+
+cp $templatedir/$template ./$1
+
+nvim $1

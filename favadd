@@ -1,4 +1,4 @@
 #!/bin/sh
 path="$HOME/.config/favorites.txt"
-echo $(paste) | tee -a $path
+echo $(ppaste) | tee -a $path
 awk -i inplace '!seen[$0]++' $path

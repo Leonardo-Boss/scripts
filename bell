@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mpv $HOME/Scripts/bell.wav

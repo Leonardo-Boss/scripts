@@ -13,8 +13,7 @@ if [ $(($now - $last_mod)) -ge 600 ]; then
 fi
 
 case $BLOCK_BUTTON in
-    1) setsid -f alacritty -T weather --hold -e pretty-print-forecast;;
-	6) alacritty -e nvim "$0" ;;
+    6) alacritty -e nvim "$0" ;;
 esac
 
 temp=$(jq .main.temp < $weatherreport)

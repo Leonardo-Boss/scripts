@@ -11,7 +11,7 @@ opacity=$(grep -o -P "(?<=opacity = )\d+.*\d*" \
 ## Assign toggle opacity value
 case $opacity in
   1)
-    toggle_opacity=0.8
+    toggle_opacity=0.9
     ;;
   *)
     toggle_opacity=1

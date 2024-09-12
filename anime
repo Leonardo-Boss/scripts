@@ -1,15 +1,25 @@
 #!/bin/sh
 animefolder="/home/eppi/mnt/harddrive/anime"
-choosenanime=$(ls "$animefolder" | fzf)
+choosenanime=$(ls "$animefolder" | fzf --bind=ctrl-j:first,ctrl-k:last)
+if [ -z "$choosenanime" ]; then
+	exit 0
+fi
 escapedpath=$(echo "$animefolder/$choosenanime/" | sed -e 's/[]\/$*.^[]/\\&/g')
 
-choosenep=$(find "$animefolder/$choosenanime" -type f | sed "s/$escapedpath//" | fzf)
-find "$animefolder/$choosenanime" -type f | sort | get-after  "$animefolder/$choosenanime/$choosenep" | mpv --playlist=-
-#while [ -n "$choosenep" ]; do
-#	mpv "$chooseneps"
-#
-#	choosenanime=$(ls "$animefolder" | fzf)
-#	escapedpath=$(echo "$animefolder/$choosenanime/" | sed -e 's/[]\/$*.^[]/\\&/g')
-#	choosenep=$(find "$animefolder/$choosenanime" -type f | sed "s/$escapedpath//" | fzf)
-#	chooseneps=$(find "$animefolder/$choosenanime" -type f | sort | get-after  "$animefolder/$choosenanime/$choosenep")
-#done
+choosenep=$(find "$animefolder/$choosenanime" -type f | sed "s/$escapedpath//" | sort_numbers | fzf --bind=ctrl-j:first,ctrl-k:last)
+if [ -z "$choosenep" ]; then
+	exit 0
+fi
+find "$animefolder/$choosenanime" -type f | sort_numbers | get-after  "$animefolder/$choosenanime/$choosenep" | mpv --playlist=-
+while [ -n "$choosenep" ]; do
+	choosenanime=$(ls "$animefolder" | fzf --bind=ctrl-j:first,ctrl-k:last)
+	if [ -z "$choosenanime" ]; then
+		exit 0
+	fi
+	escapedpath=$(echo "$animefolder/$choosenanime/" | sed -e 's/[]\/$*.^[]/\\&/g')
+	choosenep=$(find "$animefolder/$choosenanime" -type f | sed "s/$escapedpath//" | sort_numbers | fzf --bind=ctrl-j:first,ctrl-k:last)
+	if [ -z "$choosenep" ]; then
+		exit 0
+	fi
+	find "$animefolder/$choosenanime" -type f | sort_numbers | get-after  "$animefolder/$choosenanime/$choosenep" | mpv --playlist=-
+done

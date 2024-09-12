@@ -1,0 +1,10 @@
+#!/bin/python3
+
+def readable(x):
+	l = len(x)
+	for i in range(l, l%3, -3):
+		x = f'{x[:i-3]}_{x[i-3:i]}{x[i:]}'
+	return x
+
+if __name__ == "__main__":
+	print('\n'.join(map(readable, open(0).read().splitlines())))

@@ -1,0 +1,20 @@
+#!/bin/python3
+import argparse
+
+parser = argparse.ArgumentParser(description='sorts based only on the numbers of a string')
+parser.add_argument('-n', '--natural', action='store_true', help='use natural sorting')
+args = parser.parse_args()
+
+def digit_filter(i):
+    return ''.join(filter(lambda x: x.isdigit(), i))
+def getkey(i):
+    return digit_filter(i)
+def getnatkey(i):
+    return int(digit_filter(i))
+
+k = getnatkey if args.natural else getkey
+
+i = open(0).read().splitlines()
+i.sort(key = lambda y: k(y))
+for line in i:
+    print(line)

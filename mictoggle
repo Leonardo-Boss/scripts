@@ -5,7 +5,7 @@ pactl set-source-mute @DEFAULT_SOURCE@ toggle
 kill -54 $(pidof dwmblocks)
 micstate=$(pactl get-source-mute @DEFAULT_SOURCE@)
 if [ "$micstate" == "Mute: no" ]; then
-	mpv --ao-volume=100 /home/eppi/Scripts/state-change_confirm-up.wav
+	mpv --script-opts=aovolume-volume=100 /home/eppi/Scripts/state-change_confirm-up.wav
 else
-	mpv --ao-volume=100 /home/eppi/Scripts/state-change_confirm-down.wav
+	mpv --script-opts=aovolume-volume=100 /home/eppi/Scripts/state-change_confirm-down.wav
 fi
