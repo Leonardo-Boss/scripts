@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 screenshot="/home/eppi/Pictures/Screenshots"
 echo "$screenshot/$(ls $screenshot -c | head -n 1)"
 

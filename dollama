@@ -1,9 +1,0 @@
-#!/bin/bash
-
-while ollama run $1 ; [[ $? -ne 0 ]];
-do
-	echo 'retrying'
-	sleep 1
-done
-
-echo 'done'

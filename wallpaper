@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 wallpaper=$(find /home/eppi/.local/share/backgrounds/ -type f | dmenu)
 feh --bg-max $wallpaper

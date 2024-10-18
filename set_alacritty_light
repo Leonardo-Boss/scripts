@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 sed -i -- "s/\/home\/eppi\/.config\/alacritty\/themes\/themes\/rose-pine.toml/\/home\/eppi\/.config\/alacritty\/themes\/themes\/rose-pine-dawn.toml/" \
     ~/.config/alacritty/alacritty.toml

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 owidth=$(identify -ping -format "%w" "$1")
 oheight=$(identify -ping -format "%h" "$1")
 # mold=$(($oheight*1/10))

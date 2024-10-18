@@ -1,3 +1,0 @@
-#!/bin/sh
-
-echo "cd /var/www/html/dolibarr/htdocs/custom/"

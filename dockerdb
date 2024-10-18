@@ -1,2 +1,2 @@
-#!/bin/sh
+#!/usr/bin/env sh
 docker exec -it dolibarr_docker-mariadb-1 mysql -u root -proot dolibarr

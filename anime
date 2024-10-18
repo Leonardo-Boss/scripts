@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 animefolder="/home/eppi/mnt/harddrive/anime"
 choosenanime=$(ls "$animefolder" | fzf --bind=ctrl-j:first,ctrl-k:last)
 if [ -z "$choosenanime" ]; then

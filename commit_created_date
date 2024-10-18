@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 while IFS= read -s file; do
 	git add $file

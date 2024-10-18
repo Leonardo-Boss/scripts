@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 readarray -t ls < <(ls -c)
 if [ "$#" -ne 1 ]; then
 	echo "${ls}"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 path="$HOME/.config/favorites.txt"
 echo $(ppaste) | tee -a $path
 awk -i inplace '!seen[$0]++' $path

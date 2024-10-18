@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 . /var/www/html/dolibarr/htdocs/custom/riopretomodule/python_test
 

@@ -1,4 +1,5 @@
-#!/bin/python3
+#!/run/current-system/sw/bin/python
+
 import argparse
 
 parser = argparse.ArgumentParser(description='sorts based only on the numbers of a string')

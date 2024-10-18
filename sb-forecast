@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 weatherreport="${XDG_CACHE_HOME:-$HOME/.cache}/weatherreport"
 if [ -s "$weatherreport" ]; then

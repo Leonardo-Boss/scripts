@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 convert $1 -resize x360 mobile$1
 moldure mobile$1 10

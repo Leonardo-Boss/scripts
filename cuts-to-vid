@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 path=$(echo $(pwd)/$1)
 cuts=($(cat "${path}"))

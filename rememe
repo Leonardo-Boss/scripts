@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 point=30
 width=500

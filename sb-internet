@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 if ping -c 1 -w 10 -q 8.8.8.8 > /dev/null ; then
 	echo "Internet!"
