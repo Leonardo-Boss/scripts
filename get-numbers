@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+
+def digit_filter(i):
+    return ''.join(filter(lambda x: x.isdigit(), i))
+
+i = open(0).read().splitlines()
+
+for line in i:
+    print(digit_filter(line))

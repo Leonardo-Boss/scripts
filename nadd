@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 1 ]; then
+	>&2 echo "Invalid number of arguments"
+fi
+
+vimkeys=':set shiftwidth=1/environment.systemPackagesonewpackage=i[vi[!sort -u:wq'
+gen=$(echo $(ls -c /nix/var/nix/profiles | grep system- | head -n1 | get-numbers)+1 | calc)
+cd $HOME/Code/nixos/
+
+for var in "$@"
+do
+	nvim configuration.nix --headless --clean -s <(echo $vimkeys | sed "s/newpackage/$var/") > /dev/null 2>&1
+done
+
+if [ "$(git diff)" != "" ]
+then
+	git add -A -N
+	sudo nixos-rebuild switch --flake . && git commit -am "generation $gen"
+fi
