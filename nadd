@@ -15,6 +15,5 @@ done
 
 if [ "$(git diff)" != "" ]
 then
-	git add -A -N
 	sudo nixos-rebuild switch --flake . && git commit -am "generation $gen"
 fi
