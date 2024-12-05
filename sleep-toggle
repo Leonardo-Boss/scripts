@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+status=$(xset -q dpms | grep "DPMS is")
+
+if [ "$status" = "  DPMS is Enabled" ]; then
+	xset s off
+	xset -dpms
+else
+	xset s on
+	xset +dpms
+fi

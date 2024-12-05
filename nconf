@@ -5,5 +5,5 @@ cd $HOME/Code/nixos/
 nvim configuration.nix
 if [ "$(git diff)" != "" ]
 then
-	sudo nixos-rebuild switch --flake . && git commit -am "generation $gen"
+	sudo nixos-rebuild switch --impure --show-trace --flake . && git commit -am "generation $gen"
 fi

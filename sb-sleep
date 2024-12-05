@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+case $BLOCK_BUTTON in
+    1) toggle_xscreensaver &;;
+    3) xscreensaver_sleep &;;
+    6) "alacritty" -e "nvim" "$0" &;;
+esac
+
+status=$(xset -q dpms | grep "DPMS is")
+
+if [ "$status" = "  DPMS is Enabled" ]; then
+	echo "💤"
+else
+	echo "☕"
+fi

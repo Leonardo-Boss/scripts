@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 0 ]; then
+	>&2 echo "Invalid number of arguments"
+fi
+
+ppaste | sed 's/ /_/g' | tr -cd '[:alnum:]._-' | copy

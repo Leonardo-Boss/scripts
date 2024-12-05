@@ -4,7 +4,8 @@ if [ $# -lt 1 ]; then
 	>&2 echo "Invalid number of arguments"
 fi
 
-vimkeys=':set shiftwidth=1/environment.systemPackagesonewpackage=i[vi[!sort -u:wq'
+
+vimkeys=':set shiftwidth=2/environment.systemPackages/[onewpackage=i[vi[!sort -u:wq'
 gen=$(echo $(ls -c /nix/var/nix/profiles | grep system- | head -n1 | get-numbers)+1 | calc)
 cd $HOME/Code/nixos/
 
@@ -15,5 +16,12 @@ done
 
 if [ "$(git diff)" != "" ]
 then
-	sudo nixos-rebuild switch --flake . && git commit -am "generation $gen"
+	sudo nixos-rebuild --show-trace --impure switch --flake .
+	if [ $? -eq 0 ];
+	then
+		git commit -am "generation $gen"
+	else
+		git restore configuration.nix
+	fi
+
 fi

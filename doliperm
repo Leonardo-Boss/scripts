@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-sudo chmod -R 777 /var/www/html/dolibarr
+sudo chmod -R 777 $HOME/Code/dolibarr
