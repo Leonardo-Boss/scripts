@@ -1,14 +1,13 @@
 #!/usr/bin/env sh
-# Script to start editing a new file in vim using a template form the users Template direcotry as basis
-# requires nvim and fzf
+# Script to start a new project using a template form the users Template directory
+# requires fzf
 if [ $# -ne 1 ]; then
-	>&2 echo "use one argument 'file-name'"
+	>&2 echo "use one argument 'Project Name'"
 fi
 
-# xdg_dirs environment variables are borked in my system for some reason and I'm too lazy to solve it so I hardcoded it
 templatedir=$HOME/Templates/
 template=$(ls $templatedir | fzf)
 
-cp $templatedir/$template ./$1
+cp -r $templatedir/$template ./$1
 
 nvim $1
