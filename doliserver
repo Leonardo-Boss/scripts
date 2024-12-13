@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ssh dolibarr -t 'ssh rp-srv-dolibarr-dev && bash -l'

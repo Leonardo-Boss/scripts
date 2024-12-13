@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+command='echo "sudo volumebk sjrp-dev03_dolibarr-mariadb-data" | ssh rp-srv-dolibarr-dev "bash -s" && scp rp-srv-dolibarr-dev:sjrp-dev03_dolibarr-mariadb-data.zip ./'
+echo $command | ssh dolibarr 'bash -s'
+scp dolibarr:sjrp-dev03_dolibarr-mariadb-data.zip ./
