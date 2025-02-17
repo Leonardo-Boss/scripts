@@ -4,14 +4,16 @@ from os import listdir, getenv
 from os.path import isdir, join
 
 path = getenv("PATH")
+home = getenv("HOME")
 if not path: exit(1)
 path = path.split(':')
 programs = {p:listdir(p) for p in path if isdir(p)}
 
 desktop_paths = (
-        "/var/lib/flatpak/exports/share/applications/",
+        # "/var/lib/flatpak/exports/share/applications/",
         "/usr/share/applications/",
-        # "/home/eppi/.local/share/applications/"
+        join(home, "Desktop"),
+        join(home, ".local/share/applications/"),
         );
 desktop_programs = {path:listdir(path) for path in desktop_paths}
 

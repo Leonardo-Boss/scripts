@@ -1,3 +1,5 @@
 #!/usr/bin/env sh
 xset s on
 xset +dpms
+kill -37 $(pidof dwmblocks)
+
